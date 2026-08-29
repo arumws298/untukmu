@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Mutiara Amanda Putri!</title>
+    <!-- Tailwind CSS Modern -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Canvas Confetti Efek Pesta -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght=0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .font-aesthetic { font-family: 'Dancing Script', cursive; }
+        .font-serif-luxury { font-family: 'Playfair Display', serif; }
+        .bg-animated-luxury { background: linear-gradient(-45deg, #f5f5f4, #edd8c4, #ebd3be, #e7c5a9); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .glass-card { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
+        .animate-fade-up { animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .particle { position: absolute; pointer-events: none; animation: floatUp 6s linear infinite; opacity: 0.6; }
+        @keyframes floatUp { from { transform: translateY(100vh) rotate(0deg); opacity: 0.6; } to { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+    </style>
+</head>
+<body class="bg-animated-luxury min-h-screen text-amber-950 overflow-x-hidden">
+
+    <!-- AUDIO BACKSOUND OPTIMIZED -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/audio/2022/01/26/audio_d0c6ff1101.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ================= COVER PEMBUKA (AESTHETIC INVITATION GATE) ================= -->
+    <div id="wedding-gate" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-b from-[#fdfbf7] to-[#edd8c4] p-4 text-center transition-all duration-1000 ease-in-out">
+        <div id="particle-container" class="absolute inset-0 overflow-hidden"></div>
+        
+        <div class="space-y-6 max-w-md px-4 relative z-10 animate-fade-up">
+            <p class="text-xs tracking-widest text-amber-800 uppercase font-semibold">Special Digital Invitation</p>
+            <div class="space-y-2">
+                <h2 class="text-xl font-light text-stone-600">The Dearest Birthday to</h2>
+                <h1 class="text-4xl md:text-5xl font-serif-luxury text-amber-900 drop-shadow-sm font-bold tracking-wide">Mutiara Amanda Putri</h1>
+            </div>
+            <div class="w-24 h-[1px] bg-amber-600 mx-auto my-4"></div>
+            <p class="text-xs italic text-stone-500">"Sesuai alunan rasa yang bertahan, ada pesan tulus yang menanti untuk diurai..."</p>
+            
+            <!-- Tombol Utama untuk Memicu Lagu Otomatis -->
+            <button onclick="bukaUndangan()" class="mt-4 inline-flex items-center gap-2 bg-gradient-to-r from-amber-800 to-amber-950 text-white text-sm font-medium py-3.5 px-8 rounded-full shadow-xl transition transform hover:scale-105 active:scale-95 cursor-pointer font-semibold uppercase tracking-wider">
+                📩 Buka Surat Mutiara
+            </button>
+        </div>
+    </div>
+
+
+    <!-- ================= KONTEN UTAMA WEBSITE (TERBUKA SETELAH KLIK) ================= -->
+    <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000 flex flex-col items-center justify-between p-4 min-h-screen">
+        
+        <!-- HEADER / HERO SECTION -->
+        <header class="text-center my-6 space-y-1">
+            <h1 class="text-5xl md:text-6xl font-aesthetic text-amber-800 drop-shadow-sm">Happy Birthday, Adek! ✨</h1>
+            <p class="text-xs md:text-sm tracking-widest text-amber-700/80 font-semibold uppercase">Mutiara Amanda Putri • Turning 18</p>
+        </header>
+
+        <!-- CARDS CONTAINER -->
+        <main class="w-full max-w-2xl glass-card rounded-3xl p-6 md:p-8 shadow-2xl space-y-8 animate-fade-up">
+            
+            <!-- FOTO UTAMA ADIK -->
+            <div class="flex justify-center">
+                <div class="relative group">
+                    <div class="absolute -inset-1.5 bg-gradient-to-r from-amber-600 to-amber-900 rounded-full blur opacity-40 group-hover:opacity-60 transition duration-1000"></div>
+                    <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <img src="https://i.ibb.co/6RbyV7w8/image-KGJX59.png" alt="Foto Mutiara Amanda Putri" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105">
+                    </div>
+                </div>
+            </div>
+
+            <!-- KONTROL MUSIK FLOATING -->
+            <div class="flex flex-wrap gap-3 justify-center">
+                <button onclick="toggleMusic()" id="music-btn" class="bg-amber-800 hover:bg-amber-900 text-white font-medium py-2 px-5 text-sm rounded-full shadow-md transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
+                    ⏸️ Matikan Musik
+                </button>
+                <button onclick="LetUpConfetti()" class="bg-white hover:bg-stone-50 text-amber-900 border border-amber-200 font-medium py-2 px-5 text-sm rounded-full shadow-md transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
+                    🎉 Tebar Confetti
+                </button>
+            </div>
+
+            <!-- SEKSI POP-UP DOA PENDEK ACAK -->
+            <section class="text-center space-y-3">
+                <h3 class="text-xs uppercase tracking-wider font-semibold text-amber-800/80">Klik untuk Doa Harian:</h3>
+                <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-white/60 shadow-inner min-h-[90px] flex items-center justify-center">
+                    <p id="birthday-wish" class="text-sm italic text-stone-700 leading-relaxed font-light">
+                        "Klik tombol di bawah ini untuk melihat rentetan doa manis lainnya..."
+                    </p>
+                </div>
+                <button onclick="generateWish()" class="bg-amber-900/10 hover:bg-amber-900/20 text-amber-900 font-medium py-1.5 px-4 rounded-full transition text-xs border border-amber-900/20 cursor-pointer">
+                    💡 Lihat Doa Lain
+                </button>
+            </section>
+
+            <!-- SEKSI SURAT UTAMA PANJANG -->
+            <section class="bg-white/60 rounded-2xl p-5 md:p-6 border border-white/80 space-y-4 text-center shadow-sm">
+                <h2 class="text-2xl font-serif-luxury font-bold text-amber-950">Surat Khusus dari Kaka ✉️</h2>
+                <p class="text-xs text-stone-500">Ada pesan panjang penuh cerita yang wajib ade baca sampai tuntas.</p>
+                
+                <button onclick="bukaSurat()" id="btn-surat" class="bg-amber-800 hover:bg-amber-900 text-white font-medium py-2.5 px-6 rounded-xl shadow-md transition transform hover:scale-102 cursor-pointer w-full md:w-auto text-sm">
+                    📬 Buka Surat Rahasia
+                </button>
+
+                <!-- SURAT TEKS ASLI ANDA -->
+                <div id="konten-surat" class="hidden text-left bg-white rounded-xl p-5 md:p-6 shadow-inner border border-stone-100 space-y-4 mt-4 text-sm leading-relaxed text-stone-700 animate-fade-up">
+                    <p class="text-base font-semibold text-stone-800">
+                        Halo ade kesayangann kaka..
+                    </p>
+                    <p>
+                        Selamat ulang tahun ade aku yang cantik, imut, lucu, baik, rajin menabung buat makan seblak wkwkwkw Ciye udah dewasa nich ehe :D
+                    </p>
+                    <p class="font-bold text-amber-800 tracking-wider text-xs">
+                        BTEWE
+                    </p>
+                    <p>
+                        Semoga apa yang ade semogakan tercapai semua diusia 18 ini.. (Duh udah 18+)<br>
+                        Kaka doain selalu buat kamu sayang aku, semoga cita-cita ade tercapai, paling penting sehat selalu, panjang umur biar kita sampe nenek nenek wkwkwk, dan juga kaya raya biar bisa dibeliin iphone 17 promax 2TB wkwkwk aamiin :)
+                    </p>
+                    <p class="italic text-stone-500">
+                        Aku tuh ga bisa bikin kata-kata pengennya ngucapin langsung tau ga bisa pake kalimat-kalimat..
+                    </p>
+                    <p>
+                        Kaka cuma mau bilang, makasih banyak udah jadi "Mutiara" yang berarti buat kaka, makasih banyak udah hadir dihidup kaka sayangg.. makasih banyak selalu nerima manusia ngeselin ini bahkan yang bikin jengkel ya hehehe makasih banyak udah nerima aku sebagai kaka kamu manis wkwk
+                    </p>
+                    <p>
+                        Makasih kamu udah selalu ngebuktiin apapun yang kamu pengen buktiin, kaka bangga sama proses ade, bangga punya ade kayak kamu :') I always proud of you :) jadi jangan minder ya, kalo minder aku tabok nih wkwkwkkw
+                    </p>
+                    <p class="font-semibold italic text-amber-900 text-center pt-3 border-t border-stone-100 text-base">
+                        "TEtap jadi 'Mutiara' ade aku selalu ya :')"
+                    </p>
+                    
+                    <div class="text-right pt-3 border-t border-stone-100">
+                        <p class="text-xs text-stone-400">With love,</p>
+                        <p class="font-aesthetic text-2xl font-bold text-amber-800 mt-1">Kaka Terbaikmu 😎</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEKSI GALERI FOTO -->
+            <section class="space-y-4">
+                <h3 class="text-center font-serif-luxury font-bold text-lg text-amber-950 tracking-wide">Momen Kebersamaan Kita 📸</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="overflow-hidden rounded-2xl shadow-lg border-2 border-white bg-white p-1 transition duration-500 hover:scale-103 hover:shadow-2xl group">
+                        <img src="https://i.ibb.co/LdpXqWz3/image-k9vku7.png" alt="Momen di Lift 1" class="rounded-xl object-cover h-48 w-full filter group-hover:brightness-105 duration-500" loading="lazy">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-lg border-2 border-white bg-white p-1 transition duration-500 hover:scale-103 hover:shadow-2xl group">
+                        <img src="https://i.ibb.co/m5mB1vHn/image-eEVNAy.png" alt="Momen di Lift 2" class="rounded-xl object-cover h-48 w-full filter group-hover:brightness-105 duration-500" loading="lazy">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-lg border-2 border-white bg-white p-1 transition duration-500 hover:scale-103 hover:shadow-2xl group">
+                        <img src="https://i.ibb.co/VWVwZptL/image-TI54d.png" alt="Pose Hati" class="rounded-xl object-cover h-48 w-full filter group-hover:brightness-105 duration-500" loading="lazy">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-lg border-2 border-white bg-white p-1 transition duration-500 hover:scale-103 hover:shadow-2xl group">
+                        <img src="https://i.ibb.co/N6L62VvV/image-zSJTzc.png" alt="Pose Koboi Berdua" class="rounded-xl object-cover h-48 w-full filter group-hover:brightness-105 duration-500" loading="lazy">
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center text-xs text-amber-900/60 font-medium my-6">
+            Dibuat dengan ❤️ oleh Kaka | &copy; 2026
+        </footer>
+    </div>
+
+    <!-- LOGIKA JAVASCRIPT SATUAN -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('particle-container');
+            const icons = ['✨', '❤️', '🌸', '🎁'];
+            for (let i = 0; i < 20; i++) {
+                let p = document.createElement('div');
+                p.className = 'particle';
+                p.innerText = icons[Math.floor(Math.random() * icons.length)];
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                p.style.fontSize = Math.random() * 15 + 10 + 'px';
+                container.appendChild(p);
+            }
+        });
+
+        const wishes = [
+            "Selamat bertambah usia adeee Mutiara Amanda Putri! Sing sehat, panjang umur, dan dilancarkan segala urusannya ya de! 💕",
+            "Happy level up day, Mutiara! 🎂 Kurangi mindernya ya, Kaka selalu bangga banget sama semua proses dan pembuktian luar biasa kamu selama ini!",
+            "Barakallah fii umrik kesayangan Kaka. Semoga selalu dalam perlindungan Allah, dilimpahkan kebahagiaan, dan dilancarkan rezekinya biar target makan seblak aman terus wkwk 🌸",
+            "Selamat ulang tahun ke-18 ya! Sukses terus belajarnya, kejar cita-citamu setinggi langit. Kaka bakal selalu ada di belakang buat nemenin perjuangan kamu! 🍦"
+        ];
+        
+        let wishIndex = 0;
+
+        function bukaUndangan() {
+            const gate = document.getElementById('wedding-gate');
+            const mainContent = document.getElementById('main-content');
+            const music = document.getElementById('bg-music');
+            
+            gate.style.transform = 'translateY(-100vh)';
+            
+            mainContent.classList.remove('hidden');
+            setTimeout(() => {
+                mainContent.classList.add('opacity-100');
+            }, 50);
+
+            music.play().catch(e => console.log("Memicu audio lewat interaksi"));
+            setTimeout(LetUpConfetti, 600);
+        }
+
+        function generateWish() {
+            const wishText = document.getElementById('birthday-wish');
+            wishText.innerText = wishes[wishIndex];
+            wishIndex = (wishIndex + 1) % wishes.length;
+            LetUpConfetti();
+        }
+
+        function bukaSurat() {
+            const konten = document.getElementById('konten-surat');
+            const btn = document.getElementById('btn-surat');
+            
+            if(konten.classList.contains('hidden')) {
+                konten.classList.remove('hidden');
+                btn.innerHTML = "📭 Tutup Surat";
+                btn.classList.replace('bg-amber-800', 'bg-stone-600');
+                LetUpConfetti();
+            } else {
+                konten.classList.add('hidden');
+                btn.innerHTML = "📬 Buka Surat Rahasia";
+                btn.classList.replace('bg-stone-600', 'bg-amber-800');
+            }
+        }
+
+        function LetUpConfetti() {
+            confetti({
+                particleCount: 120,
+                spread: 70,
+                origin: { y: 0.65 },
+                colors: ['#b45309', '#d97706', '#f59e0b', '#78350f', '#fef3c7']
+            });
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "⏸️ Matikan Musik";
+                btn.classList.replace('bg-amber-700', 'bg-slate-600');
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵 Putar Musik";
+                btn.classList.replace('bg-slate-600', 'bg-amber-700');
+            }
+        }
+    </script>
+</body>
+</html>
