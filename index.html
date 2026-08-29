@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Mutiara Amanda Putri!</title>
+    <!-- Tailwind CSS untuk Desain Responsif & Modern -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Canvas Confetti untuk Efek Pesta -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- Google Fonts -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .font-aesthetic { font-family: 'Dancing Script', cursive; }
+        /* Tema warna disesuaikan dengan tone foto (Cokelat & Krem hangat) */
+        .bg-gradient-earth { background: linear-gradient(135deg, #f5f5f4 0%, #edd8c4 100%); }
+    </style>
+</head>
+<body class="bg-gradient-earth min-h-screen flex flex-col items-center justify-between p-4 overflow-x-hidden text-amber-950">
+
+    <!-- AUDIO BACKSOUND: Instrumen Afgan - Untukmu Aku Bertahan (Piano Version) -->
+    <audio id="bg-music" loop>
+        <source src="https://pixabay.com" type="audio/mpeg">
+    </audio>
+
+    <!-- HEADER / HERO SECTION -->
+    <header class="text-center my-6 animate-bounce">
+        <h1 class="text-5xl md:text-6xl font-aesthetic text-amber-800 drop-shadow-md">Happy Birthday, Mutiara! ✨</h1>
+        <p class="text-sm md:text-base tracking-widest text-amber-700 font-semibold uppercase mt-2">Hari ini adalah harimu yang spesial</p>
+    </header>
+
+    <!-- UTAMA: KARTU INTERAKTIF & GALERI -->
+    <main class="w-full max-w-2xl bg-white/70 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-amber-200/50 space-y-8">
+        
+        <!-- FOTO UTAMA ADIK -->
+        <div class="flex justify-center">
+            <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-amber-700 shadow-lg">
+                <!-- Foto utama adik menggunakan gaya topi koboi -->
+                <img src="https://ibb.co" alt="Foto Mutiara Amanda Putri" class="w-full h-full object-cover object-top">
+            </div>
+        </div>
+
+        <!-- Tombol Kontrol Musik & Confetti -->
+        <div class="flex flex-wrap gap-4 justify-center">
+            <button onclick="toggleMusic()" id="music-btn" class="bg-amber-700 hover:bg-amber-800 text-white font-semibold py-2 px-6 rounded-full shadow-md transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
+                🎵 Putar Musik
+            </button>
+            <button onclick="LetUpConfetti()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded-full shadow-md transition transform hover:scale-105 flex items-center gap-2 cursor-pointer">
+                🎉 Tebar Confetti
+            </button>
+        </div>
+
+        <!-- SEKSI SURAT UCAPAN -->
+        <section class="text-center space-y-4">
+            <h2 class="text-2xl font-semibold text-amber-900">Pesan Spesial untuk Kamu:</h2>
+            <div class="bg-stone-50 rounded-2xl p-4 md:p-6 border border-amber-200 shadow-inner min-h-[120px] flex items-center justify-center">
+                <p id="birthday-wish" class="text-base md:text-lg italic text-stone-700 leading-relaxed font-light">
+                    "Klik tombol di bawah ini untuk membuka kejutan doa dan mengaktifkan lagu..."
+                </p>
+            </div>
+            <button onclick="generateWish()" class="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white font-medium py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 cursor-pointer">
+                💌 Buka Surat Ucapan
+            </button>
+        </section>
+
+        <!-- SEKSI GALERI FOTO KEBERSAMAAN YANG DIPERBARUI -->
+        <section class="space-y-4">
+            <h3 class="text-center text-xl font-semibold text-amber-900 tracking-wider">Momen Kebersamaan Kita 📸</h3>
+            <div class="grid grid-cols-2 gap-3 md:gap-4">
+                <!-- Foto 1: Pose Menunjuk di Lift -->
+                <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
+                    <img src="https://ibb.co" alt="Momen di Lift 1" class="rounded-xl object-cover h-48 w-full">
+                </div>
+                <!-- Foto 2: Pose Lucu di Lift -->
+                <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
+                    <img src="https://ibb.co" alt="Momen di Lift 2" class="rounded-xl object-cover h-48 w-full">
+                </div>
+                <!-- Foto 3: Pose Tangan Hati -->
+                <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
+                    <img src="https://ibb.co" alt="Pose Hati" class="rounded-xl object-cover h-48 w-full">
+                </div>
+                <!-- Foto 4: Pose Topi Koboi Berdua -->
+                <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
+                    <img src="https://ibb.co" alt="Pose Koboi Berdua" class="rounded-xl object-cover h-48 w-full">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-xs text-amber-700/60 font-light my-6">
+        Dibuat dengan ❤️ oleh Kakakmu | &copy; 2026
+    </footer>
+
+    <!-- LOGIKA JAVASCRIPT -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(LetUpConfetti, 500);
+        });
+
+        // Kumpulan ucapan dengan ucapan pertama sesuai permintaan khusus Anda
+        const wishes = [
+            "Selamat Bertambah usia adeee, Mutiara Amanda Putri 🎂 Semoga panjang umur, sehat selalu, dan semua impianmu di tahun ini bisa terwujud. Kakak selalu ada untuk mendukungmu! 💕",
+            "Happy level up day, Adek Cantik! ✨ Terimakasih sudah menjadi adik yang hebat sekaligus teman berbagi cerita yang seru. Tetap jadi kebanggaan keluarga ya!",
+            "Barakallah fii umrik adek kesayangan. Semoga Allah selalu memberikan kemudahan, keberkahan usia, kebahagiaan, serta perlindungan di setiap langkah hidupmu. Love you! 🌸",
+            "Selamat ulang tahun! Jangan pernah lelah mengejar cita-citamu ya. Ingat, kalau kamu butuh bantuan atau tempat bersandar, Kakak selalu ada di sini buat kamu. Yuk kita lihat-lihat foto keseruan kita di bawah! 🍦"
+        ];
+        
+        let wishIndex = 0;
+        let musicStarted = false;
+
+        function startAudioOnInteraction() {
+            if (!musicStarted) {
+                const music = document.getElementById('bg-music');
+                const btn = document.getElementById('music-btn');
+                music.play().then(() => {
+                    btn.innerHTML = "⏸️ Matikan Musik";
+                    btn.classList.replace('bg-amber-700', 'bg-slate-600');
+                    musicStarted = true;
+                }).catch(e => console.log("Menunggu klik pengguna untuk memulai musik"));
+            }
+        }
+
+        document.body.addEventListener('click', startAudioOnInteraction);
+        document.body.addEventListener('touchstart', startAudioOnInteraction);
+
+        function generateWish() {
+            startAudioOnInteraction();
+            const wishText = document.getElementById('birthday-wish');
+            wishText.innerText = wishes[wishIndex];
+            wishIndex = (wishIndex + 1) % wishes.length;
+            LetUpConfetti();
+        }
+
+        function LetUpConfetti() {
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 },
+                colors: ['#b45309', '#d97706', '#f59e0b', '#78350f']
+            });
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            
+            if (music.paused) {
+                music.play().catch(error => {
+                    alert("Izin browser diperlukan, silakan klik tombol lagi.");
+                });
+                btn.innerHTML = "⏸️ Matikan Musik";
+                btn.classList.replace('bg-amber-700', 'bg-slate-600');
+                musicStarted = true;
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵 Putar Musik";
+                btn.classList.replace('bg-slate-600', 'bg-amber-700');
+            }
+        }
+    </script>
+</body>
+</html>
