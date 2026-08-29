@@ -13,14 +13,13 @@
     <style>
         body { font-family: 'Poppins', sans-serif; }
         .font-aesthetic { font-family: 'Dancing Script', cursive; }
-        /* Tema warna disesuaikan dengan tone foto (Cokelat & Krem hangat) */
         .bg-gradient-earth { background: linear-gradient(135deg, #f5f5f4 0%, #edd8c4 100%); }
     </style>
 </head>
 <body class="bg-gradient-earth min-h-screen flex flex-col items-center justify-between p-4 overflow-x-hidden text-amber-950">
 
-    <!-- AUDIO BACKSOUND: Instrumen Afgan - Untukmu Aku Bertahan (Piano Version) -->
-    <audio id="bg-music" loop>
+    <!-- AUDIO BACKSOUND OPTIMIZED: Preload diatur ke none agar web tidak lemot saat dibuka -->
+    <audio id="bg-music" loop preload="none">
         <source src="https://pixabay.com" type="audio/mpeg">
     </audio>
 
@@ -36,8 +35,7 @@
         <!-- FOTO UTAMA ADIK -->
         <div class="flex justify-center">
             <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-amber-700 shadow-lg">
-                <!-- Foto utama adik menggunakan gaya topi koboi -->
-                <img src="https://ibb.co" alt="Foto Mutiara Amanda Putri" class="w-full h-full object-cover object-top">
+                <img src="https://ibb.co" alt="Foto Mutiara Amanda Putri" class="w-full h-full object-cover object-top" loading="lazy">
             </div>
         </div>
 
@@ -64,25 +62,21 @@
             </button>
         </section>
 
-        <!-- SEKSI GALERI FOTO KEBERSAMAAN YANG DIPERBARUI -->
+        <!-- SEKSI GALERI FOTO KEBERSAMAAN -->
         <section class="space-y-4">
             <h3 class="text-center text-xl font-semibold text-amber-900 tracking-wider">Momen Kebersamaan Kita 📸</h3>
             <div class="grid grid-cols-2 gap-3 md:gap-4">
-                <!-- Foto 1: Pose Menunjuk di Lift -->
                 <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
-                    <img src="https://ibb.co" alt="Momen di Lift 1" class="rounded-xl object-cover h-48 w-full">
+                    <img src="https://ibb.co" alt="Momen di Lift 1" class="rounded-xl object-cover h-48 w-full" loading="lazy">
                 </div>
-                <!-- Foto 2: Pose Lucu di Lift -->
                 <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
-                    <img src="https://ibb.co" alt="Momen di Lift 2" class="rounded-xl object-cover h-48 w-full">
+                    <img src="https://ibb.co" alt="Momen di Lift 2" class="rounded-xl object-cover h-48 w-full" loading="lazy">
                 </div>
-                <!-- Foto 3: Pose Tangan Hati -->
                 <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
-                    <img src="https://ibb.co" alt="Pose Hati" class="rounded-xl object-cover h-48 w-full">
+                    <img src="https://ibb.co" alt="Pose Hati" class="rounded-xl object-cover h-48 w-full" loading="lazy">
                 </div>
-                <!-- Foto 4: Pose Topi Koboi Berdua -->
                 <div class="overflow-hidden rounded-2xl shadow-md border border-amber-100 bg-white p-1 transition transform hover:scale-102 hover:shadow-lg">
-                    <img src="https://ibb.co" alt="Pose Koboi Berdua" class="rounded-xl object-cover h-48 w-full">
+                    <img src="https://ibb.co" alt="Pose Koboi Berdua" class="rounded-xl object-cover h-48 w-full" loading="lazy">
                 </div>
             </div>
         </section>
@@ -100,7 +94,6 @@
             setTimeout(LetUpConfetti, 500);
         });
 
-        // Kumpulan ucapan dengan ucapan pertama sesuai permintaan khusus Anda
         const wishes = [
             "Selamat Bertambah usia adeee, Mutiara Amanda Putri 🎂 Semoga panjang umur, sehat selalu, dan semua impianmu di tahun ini bisa terwujud. Kakak selalu ada untuk mendukungmu! 💕",
             "Happy level up day, Adek Cantik! ✨ Terimakasih sudah menjadi adik yang hebat sekaligus teman berbagi cerita yang seru. Tetap jadi kebanggaan keluarga ya!",
@@ -115,11 +108,15 @@
             if (!musicStarted) {
                 const music = document.getElementById('bg-music');
                 const btn = document.getElementById('music-btn');
+                
+                // Memaksa browser memuat file audio saat interaksi pertama terjadi
+                music.load(); 
+                
                 music.play().then(() => {
                     btn.innerHTML = "⏸️ Matikan Musik";
                     btn.classList.replace('bg-amber-700', 'bg-slate-600');
                     musicStarted = true;
-                }).catch(e => console.log("Menunggu klik pengguna untuk memulai musik"));
+                }).catch(e => console.log("Menunggu interaksi aktif"));
             }
         }
 
@@ -148,6 +145,7 @@
             const btn = document.getElementById('music-btn');
             
             if (music.paused) {
+                if(!musicStarted) music.load();
                 music.play().catch(error => {
                     alert("Izin browser diperlukan, silakan klik tombol lagi.");
                 });
@@ -163,3 +161,10 @@
     </script>
 </body>
 </html>
+
+Silakan ganti kode lama Anda dengan kode baru yang telah dioptimalkan ini. Beri tahu saya jika halamannya sudah terbuka jauh lebih cepat sekarang!
+
+[1] [https://www.wix.com](https://www.wix.com/blog/slow-loading-websites)
+[2] [https://www.outrank.co.uk](https://www.outrank.co.uk/latest-news/why-is-my-website-slow-and-how-do-i-fix-it/)
+[3] [https://www.youtube.com](https://www.youtube.com/watch?v=4zotfXC98aw&t=2)
+[4] [https://agencypartner.com](https://agencypartner.com/why-is-my-website-loading-slowly)
